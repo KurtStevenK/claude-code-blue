@@ -6,6 +6,8 @@
 $green = "#0078d4"            # the new color (variable name kept from claude-code-mint)
 $greenRgb = @(0, 120, 212)
 $oldColors = @("#2ec767", "#d97757", "#3eb489", "#c6613f", "#2ecc71", "#00ff00", "#1fda45")
+# a claude-code-rgb animation (CSS block / SVG style) is removed first, so switching from rgb works
+$rgbPattern = '(?s)\r?\n?(<style>)?/\* claude-code-rgb:start \*/.*?/\* claude-code-rgb:end \*/(</style>)?\r?\n?'
 
 # ---- 1. find the Claude Code extension folders (newest version per install dir)
 $roots = @("$env:USERPROFILE\.vscode-oss\extensions", "$env:USERPROFILE\.vscodium\extensions")
@@ -32,7 +34,7 @@ foreach ($ext in $exts) {
         if (-not (Test-Path $f)) { continue }
         if (-not (Test-Path "$f.orig")) { Copy-Item $f "$f.orig" }
         $text = [System.IO.File]::ReadAllText($f)
-        $new = $text
+        $new = [regex]::Replace($text, $rgbPattern, "")
         foreach ($old in $oldColors) {
             $new = [System.Text.RegularExpressions.Regex]::Replace($new, [regex]::Escape($old), $green, 'IgnoreCase')
         }

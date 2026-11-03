@@ -38,7 +38,7 @@ Other versions may work. The script looks for `anthropic.claude-code-*` folders,
 
 ## Back to mint
 
-Run `claude-code-mint`. It knows the blue and replaces it.
+Run `claude-code-mint`. It knows the blue and replaces it. Running this skill also removes a `claude-code-rgb` rainbow animation.
 
 ## Undo
 

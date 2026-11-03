@@ -49,7 +49,7 @@ If the script prints `VSCodium is running`, it skipped the cache step. Close VSC
 
 ## Switch between blue and mint
 
-Each script knows the other's color. Run `claude-code-mint` to go back to mint, or `claude-code-blue` to go to blue.
+Each script knows the other's color and removes the rainbow animation of [claude-code-rgb](https://github.com/KurtStevenK/claude-code-rgb). Run `claude-code-mint` to go back to mint, or `claude-code-blue` to go to blue.
 
 ## What it changes
 
